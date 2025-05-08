@@ -1,0 +1,10 @@
+[project]
+name = "erp-ipba"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12.3"
+dependencies = [
+    "django>=5.2.1",
+    "django-compressor>=4.5.1",
+]
