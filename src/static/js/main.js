@@ -1,9 +1,10 @@
 import { initNavbar } from "./components/navbar.js";
+import { initCarousel } from "./components/carousel.js";
 
 // Initialize all components
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
-    // initCarousel();
+    initCarousel();
     // initSchedule();
     // initMap();
     // initContact();
