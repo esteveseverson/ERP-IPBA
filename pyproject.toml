@@ -5,6 +5,31 @@ description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.12.3"
 dependencies = [
+    "cloudinary>=1.44.0",
     "django>=5.2.1",
     "django-compressor>=4.5.1",
+    "pillow>=11.2.1",
+    "python-decouple>=3.8",
 ]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.11.9",
+    "taskipy>=1.14.1",
+]
+
+[tool.ruff]
+line-length = 91
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+ignore = ['PLR', 'PLC']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'
+
+[tool.taskipy.tasks]
+format = 'ruff check . --fix && ruff format .'
