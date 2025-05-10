@@ -11,7 +11,7 @@
     <title>Igreja Presbiteriana Aliança</title>
 
     {% compress css %}
-    <link rel="stylesheet" href="{% static 'src/output.css' %}">
+        <link rel="stylesheet" href="{% static 'src/output.css' %}">
     {% endcompress %}
 
 </head>
@@ -22,7 +22,8 @@
         {% include "components/navbar.html" %}
     </div>
 
-    {% block content %}{% endblock content %}
+    {% block content %}
+    {% endblock content %}
 
     <div id="footer">
         {% include "components/footer.html" %}
