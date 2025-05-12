@@ -34,3 +34,8 @@ class Church(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Meet(models.Model):
+    church_id = models.ForeignKey(Church, on_delete=models.SET_NULL, null=True)
+    meeting = models.CharField(max_length=255)
