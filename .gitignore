@@ -15,5 +15,7 @@ wheels/
 node_modules
 
 # Vendors
+staticfiles
+static/admin
 output.css
 CACHE/
