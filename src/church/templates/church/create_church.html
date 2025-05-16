@@ -1,53 +1,71 @@
 {% extends "_base.html" %}
 
 {% block content %}
-    <div class="h-lvh container mx-auto pt-30">
-        <!-- Header with back button -->
-        <div class="flex items-center mb-6">
-            <a href="{% url 'church_page' %}" class="text-primary-lighter hover:text-primary-darker mr-4">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z" clip-rule="evenodd" />
-                </svg>
-            </a>
-            <h1 class="text-3xl font-bold text-gray-800">Criar Nova Igreja</h1>
-        </div>
+<div class="h-lvh container mx-auto pt-30">
+    <!-- Header with back button -->
+    <div class="flex items-center mb-6">
+        <a href="{% url 'church_page' %}" class="text-primary-lighter hover:text-primary-darker mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+        </a>
+        <h1 class="text-3xl font-bold text-gray-800">Criar Nova Igreja</h1>
+    </div>
 
-        <!-- Church Creation Form -->
-        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
-            <form action="" method="POST" enctype="multipart/form-data">
-                {% csrf_token %}
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <!-- Church Name -->
-                    <div class="col-span-1 md:col-span-2">
-                        <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome da Igreja</label>
-                        <input type="text" id="name" name="name" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                            placeholder="Catedral Presbiteriana Aliança">
-                    </div>
+    <!-- Church Creation Form -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <form action="" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Church Name -->
+                <div class="col-span-1 md:col-span-2">
+                    <label for="name" class="block text-sm font-medium text-gray-700 mb-1">Nome da Igreja</label>
+                    <input type="text" id="name" name="name" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                        placeholder="Catedral Presbiteriana Aliança">
+                </div>
 
-                    <!-- Street -->
-                    <div>
-                        <label for="street" class="block text-sm font-medium text-gray-700 mb-1">Rua</label>
-                        <input type="text" id="street" name="street" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                            placeholder="Av. J.K.">
-                    </div>
+                <!-- Street -->
+                <div>
+                    <label for="street" class="block text-sm font-medium text-gray-700 mb-1">Rua</label>
+                    <input type="text" id="street" name="street" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                        placeholder="Av. J.K.">
+                </div>
 
-                    <!-- Number -->
-                    <div>
-                        <label for="number" class="block text-sm font-medium text-gray-700 mb-1">Número</label>
-                        <input type="number" id="number" name="number" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
-                            placeholder="2472">
-                    </div>
+                <!-- Number -->
+                <div>
+                    <label for="number" class="block text-sm font-medium text-gray-700 mb-1">Número</label>
+                    <input type="text" id="number" name="number" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                        placeholder="2472">
+                </div>
 
+                <!-- Neighborhood -->
+                <div>
+                    <label for="neighborhood" class="block text-sm font-medium text-gray-700 mb-1">Bairro</label>
+                    <input type="text" id="neighborhood" name="neighborhood" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
+                        placeholder="Belvedere">
+                </div>
+
+                <!-- Foundation Date -->
+                <div>
+                    <label for="foundation_date" class="block text-sm font-medium text-gray-700 mb-1">Data de
+                        Fundação</label>
+                    <input type="date" id="foundation_date" name="foundation_date" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+                </div>
+
+                <div>
                     <!-- Latitude -->
                     <div>
                         <label for="lat" class="block text-sm font-medium text-gray-700 mb-1">Latitude</label>
                         <input type="number" id="lat" name="lat" step="0.00000001" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary"
                             placeholder="40.71272200">
-                        <p class="mt-1 text-xs text-gray-500">Coordernadas do Google Maps (max 10 digitos)</p>
                     </div>
 
                     <!-- Longitude -->
@@ -58,50 +76,148 @@
                             placeholder="-74.00601700">
                         <p class="mt-1 text-xs text-gray-500">Coordernadas do Google Maps (max 11 digitos)</p>
                     </div>
+                </div>
 
-                    <!-- Foundation Date -->
-                    <div>
-                        <label for="foundation_date" class="block text-sm font-medium text-gray-700 mb-1">Data de Fundação</label>
-                        <input type="date" id="foundation_date" name="foundation_date" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-primary">
+
+                <!-- Image Upload -->
+                <div>
+                    <label for="image-upload" class="block text-sm font-medium text-gray-700 mb-1">Church Image</label>
+
+                    <!-- Upload Area - Shown when no image is selected -->
+                    <div id="upload-area" class="flex items-center justify-center w-full">
+                        <label for="image-upload"
+                            class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
+                            <div class="flex flex-col items-center justify-center pt-5 pb-6">
+                                <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2"
+                                        d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2" />
+                                </svg>
+                                <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span>
+                                    or drag and drop</p>
+                                <p class="text-xs text-gray-500">PNG or JPEG (Max. 2MB)</p>
+                            </div>
+                        </label>
                     </div>
 
-                    <!-- Image Upload -->
-                    <div>
-                        <label for="image" class="block text-sm font-medium text-gray-700 mb-1">Foto da Igreja</label>
-                        <div class="flex items-center justify-center w-full">
-                            <label for="image" class="flex flex-col items-center justify-center w-full h-32 border-2 border-gray-300 border-dashed rounded-lg cursor-pointer bg-gray-50 hover:bg-gray-100">
-                                <div class="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <svg class="w-8 h-8 mb-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 16">
-                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 13h3a3 3 0 0 0 0-6h-.025A5.56 5.56 0 0 0 16 6.5 5.5 5.5 0 0 0 5.207 5.021C5.137 5.017 5.071 5 5 5a4 4 0 0 0 0 8h2.167M10 15V6m0 0L8 8m2-2 2 2"/>
-                                    </svg>
-                                    <p class="mb-2 text-sm text-gray-500"><span class="font-semibold">Click to upload</span> or drag and drop</p>
-                                    <p class="text-xs text-gray-500">PNG or JPEG (Max. 2MB)</p>
+                    <!-- Image Preview Area - Hidden by default, shown when image is selected -->
+                    <div id="preview-area" class="hidden w-full">
+                        <div class="relative border-2 border-green-500 rounded-lg p-2 bg-green-50">
+                            <div class="flex items-center">
+                                <!-- Image preview -->
+                                <div
+                                    class="w-24 h-24 mr-4 overflow-hidden rounded-md bg-gray-200 flex items-center justify-center">
+                                    <img id="image-preview" src="#" alt="Preview" class="object-cover w-full h-full">
                                 </div>
-                                <input id="image" name="image" type="file" accept=".png,.jpg,.jpeg" class="hidden" />
-                            </label>
+
+                                <!-- File info -->
+                                <div class="flex-1">
+                                    <p id="file-name" class="text-sm font-medium text-gray-900 truncate"></p>
+                                    <p id="file-size" class="text-xs text-gray-500"></p>
+                                </div>
+
+                                <!-- Remove button -->
+                                <button type="button" id="remove-image" class="p-1 text-red-600 hover:text-red-800">
+                                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20"
+                                        fill="currentColor">
+                                        <path fill-rule="evenodd"
+                                            d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                            clip-rule="evenodd" />
+                                    </svg>
+                                </button>
+                            </div>
+
+                            <!-- Success message -->
+                            <p class="text-xs text-green-600 mt-1">Image uploaded successfully!</p>
                         </div>
                     </div>
 
-                    <!-- Brief History -->
-                    <div class="col-span-1 md:col-span-2">
-                        <label for="brief_history" class="block text-sm font-medium text-gray-700 mb-1">Resumo da História</label>
-                        <textarea id="brief_history" name="brief_history" rows="4" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
-                            placeholder="Enter a brief history of the church..."></textarea>
-                    </div>
+                    <!-- Actual file input (hidden) -->
+                    <input id="image-upload" name="image" type="file" accept=".png,.jpg,.jpeg" class="hidden" />
                 </div>
 
-                <!-- Form Buttons -->
-                <div class="flex justify-end space-x-4 mt-6">
-                    <a href="{% url 'church_page' %}" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors">
-                        Cancelar
-                    </a>
-                    <button type="submit" class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
-                        Criar Igreja
-                    </button>
+                <!-- Brief History -->
+                <div class="col-span-1 md:col-span-2">
+                    <label for="brief_history" class="block text-sm font-medium text-gray-700 mb-1">Resumo da
+                        História</label>
+                    <textarea id="brief_history" name="brief_history" rows="4" required
+                        class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500"
+                        placeholder="Enter a brief history of the church..."></textarea>
                 </div>
-            </form>
-        </div>
+
+            </div>
+
+            <!-- Form Buttons -->
+            <div class="flex justify-end space-x-4 mt-6">
+                <a href="{% url 'church_page' %}"
+                    class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors">
+                    Cancelar
+                </a>
+                <button type="submit"
+                    class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors">
+                    Criar Igreja
+                </button>
+            </div>
+        </form>
     </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const imageUpload = document.getElementById('image-upload');
+        const uploadArea = document.getElementById('upload-area');
+        const previewArea = document.getElementById('preview-area');
+        const imagePreview = document.getElementById('image-preview');
+        const fileName = document.getElementById('file-name');
+        const fileSize = document.getElementById('file-size');
+        const removeButton = document.getElementById('remove-image');
+
+        // Handle file selection
+        imageUpload.addEventListener('change', function (e) {
+            if (this.files && this.files[0]) {
+                const file = this.files[0];
+
+                // Show preview of the image
+                const reader = new FileReader();
+                reader.onload = function (e) {
+                    imagePreview.src = e.target.result;
+                }
+                reader.readAsDataURL(file);
+
+                // Display file information
+                fileName.textContent = file.name;
+
+                // Format file size
+                const size = file.size;
+                let formattedSize;
+                if (size < 1024) {
+                    formattedSize = size + ' bytes';
+                } else if (size < 1024 * 1024) {
+                    formattedSize = (size / 1024).toFixed(1) + ' KB';
+                } else {
+                    formattedSize = (size / (1024 * 1024)).toFixed(1) + ' MB';
+                }
+                fileSize.textContent = formattedSize;
+
+                // Show preview area and hide upload area
+                uploadArea.classList.add('hidden');
+                previewArea.classList.remove('hidden');
+            }
+        });
+
+        // Handle remove button click
+        removeButton.addEventListener('click', function () {
+            // Clear the file input
+            imageUpload.value = '';
+
+            // Hide preview area and show upload area
+            previewArea.classList.add('hidden');
+            uploadArea.classList.remove('hidden');
+
+            // Clear preview image
+            imagePreview.src = '#';
+        });
+    });
+</script>
 {% endblock content %}
