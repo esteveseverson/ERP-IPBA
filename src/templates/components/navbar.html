@@ -5,28 +5,36 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <svg class="w-12 h-12 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                        <img class="w-12 h-12" src="{% static 'public/ipb-verde.svg' %}" alt="" />
-                    </svg>
-                    <div>
-                        <span class="font-serif font-bold text-xl text-primary">Igreja Presbiteriana</span>
-                        <span class="block text-sm text-gray-500">do Brasil</span>
+                <a href="{% url 'landing_page' %}">
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-12 h-12 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                            <img class="w-12 h-12" src="{% static 'public/ipb-verde.svg' %}" alt="" />
+                        </svg>
+                        <div>
+                            <span class="font-serif font-bold text-xl text-primary">Igreja Presbiteriana</span>
+                            <span class="block text-sm text-gray-500">do Brasil</span>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#" class="nav-link active hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Inicio</a>
-                    <a href="#" class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Igrejas</a>
-                    <a href="#" class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Pessoas</a>
-                    <a href="#" class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Dízimos</a>
-                    <a href="{% url 'logout_user' %}" class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Sair</a>
+                    <a href="{% url 'landing_page' %}"
+                        class="nav-link active hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Inicio</a>
+                    <a href="{% url 'church_page' %}"
+                        class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Igrejas</a>
+                    <a href="#"
+                        class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Pessoas</a>
+                    <a href="#"
+                        class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Dízimos</a>
+                    <a href="{% url 'logout_user' %}"
+                        class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Sair</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button id="hamburger" class="flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none">
+                    <button id="hamburger"
+                        class="flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none">
                         <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
                         <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
                         <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
@@ -36,16 +44,17 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden bg-white shadow-lg rounded-b-lg absolute w-full left-0 right-0 overflow-hidden transition-all duration-300 max-h-0">
+        <div id="mobile-menu"
+            class="md:hidden bg-white shadow-lg rounded-b-lg absolute w-full left-0 right-0 overflow-hidden transition-all duration-300 max-h-0">
             <div class="px-4 py-4 space-y-4">
-                <a href="#" class="nav-link active block py-2">Início</a>
-                <a href="#" class="nav-link block py-2">Igrejas</a>
+                <a href="{% url 'landing_page' %}" class="nav-link active block py-2">Início</a>
+                <a href="{% url 'church_page' %}" class="nav-link block py-2">Igrejas</a>
                 <a href="#" class="nav-link block py-2">Pessoas</a>
                 <a href="#" class="nav-link block py-2">Dízimos</a>
             </div>
         </div>
     </nav>
-{% else %}
+    {% else %}
     <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
@@ -62,15 +71,20 @@
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">
-                    <a href="#hero" class="nav-link active hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Início</a>
-                    <a href="#about" class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">História</a>
-                    <a href="#schedule-section" class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Horários</a>
-                    <a href="#contact-section" class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Contato</a>
+                    <a href="#hero"
+                        class="nav-link active hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Início</a>
+                    <a href="#about"
+                        class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">História</a>
+                    <a href="#schedule-section"
+                        class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Horários</a>
+                    <a href="#contact-section"
+                        class="nav-link hover:text-primary font-semibold hover:scale-[1.1] transition duration-300">Contato</a>
                 </div>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden">
-                    <button id="hamburger" class="flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none">
+                    <button id="hamburger"
+                        class="flex flex-col justify-center items-center w-8 h-8 space-y-1.5 focus:outline-none">
                         <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
                         <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
                         <span class="w-6 h-0.5 bg-gray-800 transition-all duration-300"></span>
@@ -80,7 +94,8 @@
         </div>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="md:hidden bg-white shadow-lg rounded-b-lg absolute w-full left-0 right-0 overflow-hidden transition-all duration-300 max-h-0">
+        <div id="mobile-menu"
+            class="md:hidden bg-white shadow-lg rounded-b-lg absolute w-full left-0 right-0 overflow-hidden transition-all duration-300 max-h-0">
             <div class="px-4 py-4 space-y-4">
                 <a href="#" class="nav-link active block py-2">Início</a>
                 <a href="#about" class="nav-link block py-2">História</a>
