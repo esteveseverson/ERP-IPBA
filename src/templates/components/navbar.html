@@ -60,15 +60,17 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <!-- Logo -->
-                <div class="flex items-center space-x-3">
-                    <svg class="w-12 h-12 text-primary" viewBox="0 0 24 24" fill="currentColor">
-                        <img class="w-12 h-12" src="{% static 'public/ipb-verde.svg' %}" alt="" />
-                    </svg>
-                    <div>
-                        <span class="font-serif font-bold text-xl text-primary">Igreja Presbiteriana</span>
-                        <span class="block text-sm text-gray-500">Aliança</span>
+                <a href="{% url 'landing_page' %}">
+                    <div class="flex items-center space-x-3">
+                        <svg class="w-12 h-12 text-primary" viewBox="0 0 24 24" fill="currentColor">
+                            <img class="w-12 h-12" src="{% static 'public/ipb-verde.svg' %}" alt="" />
+                        </svg>
+                        <div>
+                            <span class="font-serif font-bold text-xl text-primary">Igreja Presbiteriana</span>
+                            <span class="block text-sm text-gray-500">Aliança</span>
+                        </div>
                     </div>
-                </div>
+                </a>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden md:flex items-center space-x-8">

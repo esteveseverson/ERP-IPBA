@@ -1,0 +1,308 @@
+{% extends "_base.html" %}
+
+{% block content %}
+<div class="container mx-auto pt-30 p-6">
+    <!-- Header with back button -->
+    <div class="flex items-center mb-6">
+        {% if user.is_authenticated %}
+        <a href="{% url 'church_page' %}"
+            class="text-primary-lighter hover:text-primary-darker hover:scale-[1.1] transition-all duration-300 mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+        </a>
+        {% else %}
+        <a href="{% url 'landing_page' %}"
+            class="text-primary-lighter hover:text-primary-darker hover:scale-[1.1] transition-all duration-300 mr-4">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
+                <path fill-rule="evenodd"
+                    d="M9.707 16.707a1 1 0 01-1.414 0l-6-6a1 1 0 010-1.414l6-6a1 1 0 011.414 1.414L5.414 9H17a1 1 0 110 2H5.414l4.293 4.293a1 1 0 010 1.414z"
+                    clip-rule="evenodd" />
+            </svg>
+        </a>
+        {% endif %}
+        <h1 class="text-3xl font-bold text-gray-800">Detalhes sobre {{ church.name }}</h1>
+    </div>
+
+    <!-- Large Church Image -->
+    <div class="w-full h-80 mb-6 overflow-hidden rounded-lg shadow-md">
+        <img src="{{ church.image.url }}" alt="{{ church.name }}" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Church Details Card -->
+    <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ church.name }}</h2>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <!-- Location Information -->
+            <div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Localização</h3>
+                <p class="text-gray-600 mb-1"><span class="font-medium">{{ church.street }}, </span>n°{{ church.number }}</p>
+                <p class="text-gray-600 mb-1"><span class="font-medium">Bairro: </span>{{ church.neighborhood }}</p>
+                <p class="text-gray-600 mb-1"><span class="font-medium">Coordenadas: </span> {{church.lat}},
+                    {{church.lon}}</p>
+            </div>
+
+            <!-- Additional Information -->
+            <div>
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Informações Adicionais</h3>
+                <p class="text-gray-600 mb-1"><span class="font-medium">Data de fundação:</span>
+                    {{church.foundation_date}} </p>
+                <p class="text-gray-600 mb-1"><span class="font-light">{{church.foundation_date|timesince}}</span></p>
+            </div>
+
+            <!-- Brief History -->
+            <div class="col-span-1 md:col-span-2">
+                <h3 class="text-lg font-semibold text-gray-700 mb-2">Resumo da nossa história</h3>
+                <p class="text-gray-600">
+                    {{ church.brief_history }}
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Map Section -->
+    <div class="bg-white shadow-md rounded-lg p-6">
+        <h3 class="text-lg font-semibold text-gray-700 mb-4">Location Map</h3>
+        <div id="map-container" class="w-full h-96 rounded-lg"></div>
+
+        <!-- Hidden church data for the map -->
+        <div id="church-data" class="hidden">
+            <script id="church-data" type="application/json">{{ church_json|safe }}</script>
+        </div>
+    </div>
+
+    <!-- Action Buttons -->
+    <div class="flex justify-end space-x-4 mt-6">
+        <a href="{% url 'landing_page' %}"
+            class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors">
+            Retornar a página inicial
+        </a>
+        {% if user.is_authenticated %}
+        <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+            Edit Church
+        </a>
+        {% endif %}
+    </div>
+
+            <!-- Meetings Section -->
+        <div class="bg-white shadow-md rounded-lg p-6 mb-6">
+            <h3 class="text-lg font-semibold text-gray-700 mb-4">Meetings & Services</h3>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Sunday Morning Service -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                            <!-- Simple Cross Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 10-2 0v3H6a1 1 0 100 2h3v8a1 1 0 102 0V8h3a1 1 0 100-2h-3V3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Sunday Service</h4>
+                            <p class="text-sm text-gray-600">10:00 AM - 11:30 AM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Sunday Evening Service -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center mr-3">
+                            <!-- Simple Cross Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-orange-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 10-2 0v3H6a1 1 0 100 2h3v8a1 1 0 102 0V8h3a1 1 0 100-2h-3V3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Evening Worship</h4>
+                            <p class="text-sm text-gray-600">6:00 PM - 7:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Wednesday Bible Study -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-green-100 flex items-center justify-center mr-3">
+                            <!-- Simple Cross Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 10-2 0v3H6a1 1 0 100 2h3v8a1 1 0 102 0V8h3a1 1 0 100-2h-3V3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Bible Study</h4>
+                            <p class="text-sm text-gray-600">Wednesday, 7:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Youth Group -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center mr-3">
+                            <!-- Simple Cross Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-purple-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 10-2 0v3H6a1 1 0 100 2h3v8a1 1 0 102 0V8h3a1 1 0 100-2h-3V3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Youth Group</h4>
+                            <p class="text-sm text-gray-600">Friday, 6:30 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Choir Practice -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-red-100 flex items-center justify-center mr-3">
+                            <!-- Simple Cross Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 10-2 0v3H6a1 1 0 100 2h3v8a1 1 0 102 0V8h3a1 1 0 100-2h-3V3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Choir Practice</h4>
+                            <p class="text-sm text-gray-600">Thursday, 7:00 PM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Prayer Meeting -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-yellow-100 flex items-center justify-center mr-3">
+                            <!-- Simple Cross Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-yellow-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 10-2 0v3H6a1 1 0 100 2h3v8a1 1 0 102 0V8h3a1 1 0 100-2h-3V3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Prayer Meeting</h4>
+                            <p class="text-sm text-gray-600">Tuesday, 6:00 AM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Community Outreach -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-teal-100 flex items-center justify-center mr-3">
+                            <!-- Simple Cross Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-teal-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 10-2 0v3H6a1 1 0 100 2h3v8a1 1 0 102 0V8h3a1 1 0 100-2h-3V3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Community Service</h4>
+                            <p class="text-sm text-gray-600">Saturday, 9:00 AM</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Special Service -->
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200 hover:shadow-md transition-shadow">
+                    <div class="flex items-center mb-2">
+                        <div class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center mr-3">
+                            <!-- Simple Cross Icon -->
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-indigo-600" viewBox="0 0 20 20" fill="currentColor">
+                                <path d="M11 3a1 1 0 10-2 0v3H6a1 1 0 100 2h3v8a1 1 0 102 0V8h3a1 1 0 100-2h-3V3z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-semibold text-gray-800">Communion Service</h4>
+                            <p class="text-sm text-gray-600">First Sunday, 10:00 AM</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Action Buttons -->
+        <div class="flex justify-end space-x-4 mt-6">
+            <a href="index.html" class="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 transition-colors">
+                Back to Directory
+            </a>
+            <a href="#" class="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 transition-colors">
+                Edit Church
+            </a>
+        </div>
+    </div>
+</div>
+
+<!-- Map Initialization Script -->
+<script>
+    function ChurchMap() {
+        const mapContainer = document.getElementById('map-container');
+        const churchDataElement = document.getElementById('church-data');
+        const church = JSON.parse(churchDataElement.textContent);
+
+        // Create the map with a temporary position
+        const map = L.map('map-container').setView([0, 0], 13);
+
+        // Add OpenStreetMap tile layer
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+        }).addTo(map);
+
+        // Custom church icon
+        const churchIcon = L.icon({
+            iconUrl: 'https://cdn-icons-png.flaticon.com/512/619/619064.png',
+            iconSize: [30, 30],
+            iconAnchor: [15, 30],
+            popupAnchor: [0, -30]
+        });
+
+        // Get church coordinates
+        const lat = parseFloat(church.lat);
+        const lon = parseFloat(church.lon);
+
+        // Add marker for the church
+        L.marker([lat, lon], { icon: churchIcon })
+            .addTo(map)
+            .bindPopup(`
+                        <strong>${church.name}</strong><br>
+                        <a href="https://www.google.com/maps/search/?api=1&query=${lat},${lon}" target="_blank" class="text-blue-600 hover:underline">View on Google Maps</a>
+                    `);
+
+        // Center the map on the church location
+        map.setView([lat, lon], 17);
+    }
+
+    // Initialize the map when the page loads
+    document.addEventListener('DOMContentLoaded', () => {
+        ChurchMap();
+
+        // Add smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    window.scrollTo({
+                        top: target.offsetTop - 80, // Adjust for navbar height
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Add scroll animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('appear');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.animate-on-scroll').forEach(element => {
+            observer.observe(element);
+        });
+    })
+</script>
+{% endblock content %}

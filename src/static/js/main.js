@@ -5,19 +5,13 @@ import { initMap } from "./components/map.js";
 // Initialize all components
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
-    console.log('iniciou navbar')
     initMap();
-    console.log('iniciou mapa')
-    initCarousel();
-    console.log('iniciou carrossel')
-
-    
+    initCarousel();    
     // initSchedule();
     // initContact();
 
     // Add smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        console.log('iniciou ancora')
         anchor.addEventListener('click', function (e) {
             e.preventDefault();
             const target = document.querySelector(this.getAttribute('href'));

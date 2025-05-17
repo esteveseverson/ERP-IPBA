@@ -1,5 +1,4 @@
 export function initMap() {
-  console.log('iniciou mapa');
   const mapContainer = document.getElementById('map-container');
   const churchDataElement = document.getElementById('church-data');
   const churches = JSON.parse(churchDataElement.textContent);
@@ -39,6 +38,4 @@ export function initMap() {
   if (bounds.length > 0) {
     map.fitBounds(bounds, { padding: [50, 50] });
   }
-
-  console.log('terminou mapa');
 }

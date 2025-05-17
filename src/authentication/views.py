@@ -17,16 +17,21 @@ def login_user(request: HttpRequest) -> HttpResponse:
         try:
             user = User.objects.get(username=username)
         except Exception:
-            messages.error(request=request, message='Wrong username or password'),
+            messages.error(request=request, message='Usuário ou Senha incorretos'),
             return render(
-                request=request, 
-                template_name='authentication/auth_page.html', 
-                context=None
+                request=request,
+                template_name='authentication/auth_page.html',
+                context=None,
             )
 
         user = authenticate(request=request, username=username, password=password)
         if not user:
-            messages.error(request=request, message='Wrong username or password')
+            messages.error(request=request, message='Usuário ou Senha incorretos')
+            return render(
+                request=request,
+                template_name='authentication/auth_page.html',
+                context=None,
+            )
 
         if user:
             login(request=request, user=user)

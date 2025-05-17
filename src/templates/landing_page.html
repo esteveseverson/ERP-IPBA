@@ -1,4 +1,5 @@
 {% extends "_base.html" %}
+{% load static %}
 
 {% block content %}
     <div id="hero">
@@ -24,7 +25,6 @@
     <div id="map-container" class="h-96 w-full"></div>
     <script id="church-data" type="application/json">{{ churches_json|safe }}</script>
 
-
     <div id="contact-section" class="bg-white py-16">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-serif font-bold text-primary-600 text-center mb-12">Entre em Contato</h2>
@@ -34,4 +34,5 @@
         </div>
     </div>
 
+    <script type="module" src="{% static 'js/main.js' %}"></script>
 {% endblock content %}
