@@ -1,30 +1,38 @@
 {% extends "_base.html" %}
+{% load static %}
 
 {% block content %}
     <div id="hero">
         {% include "components/hero.html" %}
     </div>
 
-    <div id="about" class="container mx-auto px-4 py-16">
+    <div id="about" class="container mx-auto my-auto px-4 pt-16 ">
         <h2 class="text-4xl font-serif font-bold text-primary-600 text-center mb-12">Nossa História</h2>
-        <div id="carousel"></div>
+        <div id="carousel">
+            {% include "components/carousel.html" %}
+        </div>
     </div>
 
     <div id="schedule-section" class="bg-gray-50 py-16">
         <div class="container mx-auto px-4">
             <h2 class="text-4xl font-serif font-bold text-primary-600 text-center mb-12">Horários e Localização</h2>
             <div id="schedule">
+                {% include "components/schedule.html" %}
+            </div>
+        </div>
+    </div>
+
+    <div id="map-container" class="h-96 w-full"></div>
+    <script id="church-data" type="application/json">{{ churches_json|safe }}</script>
+
+    <div id="contact-section" class="bg-white py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-4xl font-serif font-bold text-primary-600 text-center mb-12">Entre em Contato</h2>
+            <div id="contact">
                 {% include "components/contact.html" %}
             </div>
         </div>
     </div>
 
-    <!--<div id="map-container" class="h-96 w-full"></div>
-    <div id="contact-section" class="bg-white py-16">
-        <div class="container mx-auto px-4">
-            <h2 class="text-4xl font-serif font-bold text-primary-600 text-center mb-12">Entre em Contato</h2>
-            <div id="contact"></div>
-        </div>
-    </div> -->
-
+    <script type="module" src="{% static 'js/main.js' %}"></script>
 {% endblock content %}

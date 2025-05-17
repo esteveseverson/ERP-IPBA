@@ -1,4 +1,7 @@
+from json import dumps
+
 from django.contrib.auth.decorators import login_required
+from django.core.serializers.json import DjangoJSONEncoder
 from django.http import HttpRequest, HttpResponse
 from django.shortcuts import redirect, render
 
@@ -52,4 +55,23 @@ def delete_church(request: HttpRequest, id: int) -> HttpResponse:
         request=request,
         template_name='church/delete_church.html',
         context=context,
+    )
+
+
+def view_church(request: HttpRequest, id: int) -> HttpResponse:
+    church = Church.objects.get(id=id)
+    church_data = {
+        'name': church.name,
+        'lat': church.lat,
+        'lon': church.lon,
+    }
+    church_json = dumps(church_data, cls=DjangoJSONEncoder)
+
+    context = {
+        'church': church,
+        'church_json': church_json,
+    }
+
+    return render(
+        request=request, template_name='church/view_church.html', context=context
     )

@@ -1,12 +1,13 @@
 import { initNavbar } from "./components/navbar.js";
 import { initCarousel } from "./components/carousel.js";
+import { initMap } from "./components/map.js";
 
 // Initialize all components
 document.addEventListener('DOMContentLoaded', () => {
     initNavbar();
-    initCarousel();
+    initMap();
+    initCarousel();    
     // initSchedule();
-    // initMap();
     // initContact();
 
     // Add smooth scrolling for anchor links

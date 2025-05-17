@@ -1,0 +1,39 @@
+<div class="carousel-container rounded-lg overflow-hidden shadow-xl animate-on-scroll mb-12">
+    <div class="carousel-slides h-96 md:h-[500px]">
+        {% for church in churches %}
+        <div class="carousel-slide {% if forloop.first %}active{% endif %}">
+            <div class="flex flex-col md:flex-row h-full">
+                <div class="w-full md:w-1/2 h-48 md:h-full">
+                    <img src="{{ church.image.url }}" alt="{{ slide.name }}" class="w-full h-full object-cover" />
+                </div>
+                <div class="w-full md:w-1/2 p-8 flex flex-col justify-center bg-white">
+                    <h3 class="text-2xl font-serif font-bold text-primary mb-4">{{ church.name }}</h3>
+                    <p class="text-gray-700">{{ church.brief_history }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <!-- Navigation Arrows -->
+    <button
+        class="carousel-prev absolute top-1/2 left-4 transform -translate-y-1/2 bg-white opacity-25 hover:opacity-100 rounded-full p-2 focus:outline-none transition duration-300 shadow-md">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+        </svg>
+    </button>
+    <button
+        class="carousel-next absolute top-1/2 right-4 transform -translate-y-1/2 bg-white opacity-25 hover:opacity-100 rounded-full p-2 focus:outline-none transition duration-300 shadow-md">
+        <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+        </svg>
+    </button>
+
+    <!-- Indicators -->
+    <div class="flex justify-center mt-4 mb-4 space-x-2">
+        {% for slide in slides %}
+        <button class="carousel-indicator {% if forloop.first %}active{% endif %}"
+            data-index="{{ forloop.counter0 }}"></button>
+        {% endfor %}
+    </div>
+</div>
