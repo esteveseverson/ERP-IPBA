@@ -39,6 +39,14 @@
                     class="w-full px-4 py-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-primary focus:border-transparent">
             </div>
 
+            <div class="text-red-500 font-bold p-0 m-0">
+                {% if messages %}
+                  {% for message in messages %}
+                    <p>{{ message }}</p><br>
+                  {% endfor %}
+                {% endif %}
+            </div>
+
             <button type="submit"
                 class="w-full bg-primary text-white py-3 px-4 mt-5 rounded-md hover:bg-primary-darker focus:outline-none focus:ring-2 focus:ring-primary-500 focus:ring-offset-2 transition duration-200 font-medium">
                 Entrar

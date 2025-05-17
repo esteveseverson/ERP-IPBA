@@ -12,7 +12,7 @@
                         </svg>
                         <div>
                             <span class="font-serif font-bold text-xl text-primary">Igreja Presbiteriana</span>
-                            <span class="block text-sm text-gray-500">do Brasil</span>
+                            <span class="block text-sm text-gray-500">Aliança</span>
                         </div>
                     </div>
                 </a>
@@ -51,10 +51,11 @@
                 <a href="{% url 'church_page' %}" class="nav-link block py-2">Igrejas</a>
                 <a href="#" class="nav-link block py-2">Pessoas</a>
                 <a href="#" class="nav-link block py-2">Dízimos</a>
+                <a href="{% url 'logout_user' %}" class="nav-link block py-2">Sair</a>
             </div>
         </div>
     </nav>
-    {% else %}
+{% else %}
     <nav class="bg-white shadow-md fixed w-full z-50 transition-all duration-300">
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
@@ -65,7 +66,7 @@
                     </svg>
                     <div>
                         <span class="font-serif font-bold text-xl text-primary">Igreja Presbiteriana</span>
-                        <span class="block text-sm text-gray-500">do Brasil</span>
+                        <span class="block text-sm text-gray-500">Aliança</span>
                     </div>
                 </div>
 
@@ -97,7 +98,7 @@
         <div id="mobile-menu"
             class="md:hidden bg-white shadow-lg rounded-b-lg absolute w-full left-0 right-0 overflow-hidden transition-all duration-300 max-h-0">
             <div class="px-4 py-4 space-y-4">
-                <a href="#" class="nav-link active block py-2">Início</a>
+                <a href="#hero" class="nav-link active block py-2">Início</a>
                 <a href="#about" class="nav-link block py-2">História</a>
                 <a href="#schedule-section" class="nav-link block py-2">Horários</a>
                 <a href="#contact-section" class="nav-link block py-2">Contato</a>
