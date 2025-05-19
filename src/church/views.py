@@ -48,7 +48,17 @@ def create_church(request: HttpRequest) -> HttpResponse:
 
 @login_required(login_url='/auth')
 def delete_church(request: HttpRequest, id: int) -> HttpResponse:
-    pass
+    church = Church.objects.get(id=id)
+    if request.method == 'POST':
+        church.delete()
+        return redirect('church_page')
+
+    context = {'church': church}
+    return render(
+        request=request,
+        template_name='church/delete_church.html',
+        context=context,
+    )
 
 
 @login_required(login_url='/auth')
