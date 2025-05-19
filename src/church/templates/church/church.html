@@ -24,16 +24,16 @@
         <table class="min-w-full bg-white">
             <thead class="bg-gray-100 justify-center align-center">
                 <tr>
-                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Image
+                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Imagem
                     </th>
-                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Name</th>
-                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Street
+                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Nome</th>
+                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Rua
                     </th>
-                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Number
+                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Numero
                     </th>
                     <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">
-                        Neighborhood</th>
-                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Actions
+                        Bairro</th>
+                    <th class="py-3 px-4 text-left text-sm font-medium text-gray-700 uppercase tracking-wider">Opções
                     </th>
                 </tr>
             </thead>
@@ -42,7 +42,7 @@
                 {% for church in churches %}
                 <tr class="hover:bg-gray-50">
                     <td class="py-4 px-4">
-                        <img src="{{ church.image.url }}" alt="St. Mary's Cathedral"
+                        <img src="{{ church.image.url }}" alt="Imagem: {{church.name}}"
                             class="h-20 w-32 object-cover rounded-md border border-gray-200">
                     </td>
                     <td class="py-4 px-4 text-sm font-medium text-gray-900">{{church.name}}</td>
@@ -53,12 +53,16 @@
                         <div class="flex space-x-2">
                             <a href="{% url 'view_church' church.id %}">
                                 <button
-                                    class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">View</button>
+                                    class="px-3 py-1 bg-blue-600 text-white rounded hover:bg-blue-700 transition-colors">Ver</button>
                             </a>
-                            <button
-                                class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">Edit</button>
-                            <button
-                                class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">Delete</button>
+                            <a href="{% url 'update_church' church.id %}">
+                                <button
+                                    class="px-3 py-1 bg-green-600 text-white rounded hover:bg-green-700 transition-colors">Editar</button>
+                            </a>
+                            <a href="{% url 'delete_church' church.id %}">
+                                <button
+                                    class="px-3 py-1 bg-red-600 text-white rounded hover:bg-red-700 transition-colors">Deletar</button>
+                            </a>
                         </div>
                     </td>
                 </tr>

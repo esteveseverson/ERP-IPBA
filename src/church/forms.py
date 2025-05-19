@@ -1,8 +1,8 @@
-from django import forms
+from django.forms import Form
 
 from .models import Church
 
 
-class ChurchForm(forms.Form):
+class ChurchForm(Form):
     class Meta:
         model = Church
