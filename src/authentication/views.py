@@ -17,7 +17,7 @@ def login_user(request: HttpRequest) -> HttpResponse:
         try:
             user = User.objects.get(username=username)
         except Exception:
-            messages.error(request=request, message='Usuário ou Senha incorretos'),
+            (messages.error(request=request, message='Usuário ou Senha incorretos'),)
             return render(
                 request=request,
                 template_name='authentication/auth_page.html',

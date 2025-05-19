@@ -24,7 +24,6 @@ def create_church(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = ChurchForm(request.POST, request.FILES)
         if form.is_valid():
-            print(request.POST)
             obj = Church.objects.create(
                 name=request.POST.get('name'),
                 street=request.POST.get('street'),
@@ -40,20 +39,53 @@ def create_church(request: HttpRequest) -> HttpResponse:
 
         return redirect('church_page')
 
-    return render(request=request, template_name='church/create_church.html', context=None)
+    return render(
+        request=request,
+        template_name='church/church_form.html',
+        context=None,
+    )
 
 
 @login_required(login_url='/auth')
 def delete_church(request: HttpRequest, id: int) -> HttpResponse:
+    pass
+
+
+@login_required(login_url='/auth')
+def update_church(request: HttpRequest, id: int) -> HttpResponse:
     church = Church.objects.get(id=id)
+    latitude = str(church.lat).replace(',', '.')
+    longitude = str(church.lon).replace(',', '.')
+    foundation_date = str(church.foundation_date).replace('/', '-')
+
     if request.method == 'POST':
-        church.delete()
+        form = ChurchForm(request.POST, request.FILES)
+        if form.is_valid():
+            church.name = request.POST.get('name')
+            church.street = request.POST.get('street')
+            church.number = request.POST.get('number')
+            church.neighborhood = request.POST.get('neighborhood')
+            church.lat = request.POST.get('lat')
+            church.lon = request.POST.get('lon')
+            church.foundation_date = request.POST.get('foundation_date')
+            church.brief_history = request.POST.get('brief_history')
+            # only alter image if a image is passed
+            if request.FILES.get('image') is not None:
+                church.image = request.FILES.get('image')
+
+            church.save()
         return redirect('church_page')
 
-    context = {'obj': church}
+    context = {
+        'church': church,
+        'latitude': latitude,
+        'longitude': longitude,
+        'foundation_date': foundation_date,
+        'page': 'update',
+    }
     return render(
         request=request,
-        template_name='church/delete_church.html',
+        template_name='church/church_form.html',
         context=context,
     )
 
